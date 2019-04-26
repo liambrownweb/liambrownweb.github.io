@@ -1,1 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=http://finder.cableone.net/main?ParticipantID=89bdhw55rwiav67vwo6o7gbbv98p9jk4&FailedURI=http%3A%2F%2Fliam.blog%2Fwp-content%2Fthemes%2Fwp-bootstrap-starter%2Finc%2Fassets%2Fjs%2Fcustomizer.js&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="http://finder.cableone.net/main?ParticipantID=89bdhw55rwiav67vwo6o7gbbv98p9jk4&FailedURI=http%3A%2F%2Fliam.blog%2Fwp-content%2Fthemes%2Fwp-bootstrap-starter%2Finc%2Fassets%2Fjs%2Fcustomizer.js&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>
+/**
+ * File customizer.js.
+ *
+ * Theme Customizer enhancements for a better user experience.
+ *
+ * Contains handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+
+( function( $ ) {
+
+	// Site title and description.
+	wp.customize( 'blogname', function( value ) {
+		value.bind( function( to ) {
+			$( '.site-title a' ).text( to );
+		} );
+	} );
+	wp.customize( 'blogdescription', function( value ) {
+		value.bind( function( to ) {
+			$( '.site-description' ).text( to );
+		} );
+	} );
+
+	// Header text color.
+	wp.customize( 'header_textcolor', function( value ) {
+		value.bind( function( to ) {
+			if ( 'blank' === to ) {
+				$( '.site-title a, .site-description' ).css( {
+					'clip': 'rect(1px, 1px, 1px, 1px)',
+					'position': 'absolute'
+				} );
+			} else {
+				$( '.site-title a, .site-description' ).css( {
+					'clip': 'auto',
+					'position': 'relative'
+				} );
+				$( '.site-title a, .site-description' ).css( {
+					'color': to
+				} );
+			}
+		} );
+	} );
+} )( jQuery );
